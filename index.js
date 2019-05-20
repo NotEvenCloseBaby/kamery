@@ -1,23 +1,24 @@
-const mysql = require('mysql');
-const http = require('http');
-const PORT = process.env.PORT || 5000;
+var express    = require("express");
+var mysql      = require('mysql');
+var connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+var app = express();
 
-const db = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
-db.connect();
+connection.connect(function(err){
+if(!err) {
+    console.log("Database is connected ... nn");
+} else {
+    console.log("Error connecting database ... nn");
+}
+});
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  //res.write('Hello World!\n');
-
-  db.query('SELECT id, ip FROM IP WHERE id=1', function(err, rows, fields) {
-    if (err) throw err;
-
-    res.write(rows[0].ip);
+app.get("/",function(req,res){
+connection.query('SELECT id, ip FROM IP WHERE id=1', function(err, rows, fields) {
+connection.end();
+  if (!err)
+    console.log('The solution is: ', rows);
+  else
+    console.log('Error while performing Query.');
   });
+});
 
-  res.end(); //end the response
-});
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+app.listen(process.env.PORT || 5000);
