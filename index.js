@@ -35,6 +35,8 @@ function updateIP(req,res) {
         // rows updated
         console.log(response.affectedRows);
     });
+
+    res.send("new ip = " + req.query.ip);
 }
 
 app.get("/",function(req,res){
