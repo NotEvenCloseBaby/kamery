@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const http = require('http');
 const PORT = process.env.PORT || 5000;
 
-const db = mysql.createConnection(process.env.JAWSDB_URL);
+const db = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 
 db.connect();
 
