@@ -8,7 +8,7 @@ db.connect();
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.write('Hello World!\n');
+  //res.write('Hello World!\n');
 
   db.query('SELECT id, ip FROM IP WHERE id=1', function(err, rows, fields) {
     if (err) throw err;
