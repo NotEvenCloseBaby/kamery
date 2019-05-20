@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 const http = require('http');
 const PORT = process.env.PORT || 5000;
 
@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
   res.write('Hello World!\n');
 
-  var db = mysql.createConnection(process.env.JAWSDB_URL);
+  const db = mysql.createConnection(process.env.JAWSDB_URL);
 
   db.connect();
 
