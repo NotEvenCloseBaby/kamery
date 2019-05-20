@@ -1,11 +1,12 @@
+var mysql = require('mysql');
 const http = require('http');
 const PORT = process.env.PORT || 5000;
+
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   res.write('Hello World!\n');
 
-  var mysql = require('mysql');
   var db = mysql.createConnection(process.env.JAWSDB_URL);
 
   db.connect();
