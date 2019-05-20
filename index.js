@@ -23,7 +23,7 @@ function handle_database(req,res) {
        });
 }
 
-function updateIP(req) {
+function updateIP(req,res) {
     let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
     let query = mysql.format(updateQuery,["IP","ip",req.query.ip,"id","1"]);
     // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
@@ -33,14 +33,15 @@ function updateIP(req) {
             return;
         }
         // rows updated
-        console.log(response.affectedRows);
+        res.send(response.affectedRows);
     });
 }
 
 app.get("/",function(req,res){
   if(req.query.ip)
-    updateIP(req);
-  handle_database(req,res);
+    updateIP(req,res);
+  else
+    handle_database(req,res);
 });
 
 app.listen(process.env.PORT || 5000);
