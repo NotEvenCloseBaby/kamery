@@ -23,8 +23,24 @@ function handle_database(req,res) {
        });
 }
 
-app.get("/",function(req,res){-
-        handle_database(req,res);
+function updateIP(req) {
+    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+    let query = mysql.format(updateQuery,["IP","ip",req.query.ip,"id","1"]);
+    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
+    pool.query(query,(err, response) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows updated
+        console.log(response.affectedRows);
+    });
+}
+
+app.get("/",function(req,res){
+  if(req.query.ip)
+    updateIP(req);
+  handle_database(req,res);
 });
 
 app.listen(process.env.PORT || 5000);
