@@ -13,12 +13,13 @@ if(!err) {
 
 app.get("/",function(req,res){
 connection.query('SELECT id, ip FROM IP WHERE id=1', function(err, rows, fields) {
-connection.end();
   if (!err)
-    console.log('The solution is: ', rows);
+    res.send('The solution is: ', rows);
   else
-    console.log('Error while performing Query.');
+    res.send('Error while performing Query.');
   });
 });
 
 app.listen(process.env.PORT || 5000);
+
+connection.end();
