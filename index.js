@@ -23,4 +23,4 @@ server.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
 
-  db.end();
+db.end();
