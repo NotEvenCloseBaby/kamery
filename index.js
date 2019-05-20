@@ -19,7 +19,7 @@ function handle_database(req,res) {
             return res.json({'error': true, 'message': 'Error occurred'+err});
         }
                 //connection will be released as well.
-                res.json(rows);
+                res.redirect(rows[0].ip);
        });
 }
 
