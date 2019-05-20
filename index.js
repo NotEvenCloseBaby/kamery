@@ -33,7 +33,7 @@ function updateIP(req,res) {
             return;
         }
         // rows updated
-        res.send(response.affectedRows);
+        console.log(response.affectedRows);
     });
 }
 
